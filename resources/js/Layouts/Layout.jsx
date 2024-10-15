@@ -1,0 +1,63 @@
+import ApplicationLogo from '@/Components/ApplicationLogo';
+import Dropdown from '@/Components/Dropdown';
+import NavLink from '@/Components/NavLink';
+import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import {Head, Link, usePage} from '@inertiajs/react';
+import { useState } from 'react';
+
+export default function Layout({ header, children }) {
+    const user = usePage().props.auth.user;
+
+    const [showingNavigationDropdown, setShowingNavigationDropdown] =
+        useState(false);
+
+    return (
+        <div className="bg-gray-100 text-gray-900">
+            <Head title={header}/>
+            <div className="min-h-screen bg-gray-100">
+                {/* <!-- Navigation Bar --> */}
+                <nav className="bg-white border-b-2 border-gray-200 py-1.5 flex gap-10 pl-16 font-bold">
+                    <div className="self-start flex flex-row bg-white px-4 rounded-full">
+                        <img src="/favicon.ico" alt="Logo" className="h-10 my-auto"/>
+                        <Link href={"/"}
+                              className="py-2 pl-3 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500 text-3xl font-black">
+                            TalkNest
+                        </Link>
+                    </div>
+                    <div className="grow flex justify-center items-center">
+                        {/* <!-- Main Links --> */}
+                    </div>
+                    <div className="self-end flex flex-row-reverse pr-16 pb-1">
+                        {user ? (
+                            <div
+                                className="h-11 animated-background bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 p-0.5 flex justify-center rounded-full">
+                                <Link href={route('logout')} method="post"
+                                      className="bg-gray-200 py-2 px-8 rounded-l-full border-gray-300 hover:bg-gray-300 duration-300 border-r-2 text-gray-900">
+                                    Logout
+                                </Link>
+                                <Link href={route('profile.show')}
+                                      className="bg-gray-200 py-2 px-8 rounded-r-full text-gray-900 hover:bg-gray-300 duration-300">
+                                    Profile
+                                </Link>
+                            </div>
+                        ) : (
+                            <div
+                                className="h-11 animated-background bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 p-0.5 flex justify-center rounded-full">
+                                <Link href={route('login')}
+                                      className="bg-gray-200 py-2 px-8 rounded-l-full border-gray-300 hover:bg-gray-300 duration-300 border-r-2 text-gray-900">
+                                    Login
+                                </Link>
+                                <Link href={route('register')}
+                                      className="bg-gray-200 py-2 px-8 rounded-r-full text-gray-900 hover:bg-gray-300 duration-300">
+                                    Register
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+                </nav>
+                {/* <!-- Page Content --> */}
+                <main>{children}</main>
+            </div>
+        </div>
+    );
+}
