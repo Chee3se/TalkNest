@@ -26,6 +26,9 @@ export default function Layout({ header, children }) {
                     </div>
                     <div className="grow flex justify-center items-center">
                         {/* <!-- Main Links --> */}
+                        <div className="hidden md:flex gap-10 pl-10">
+                            <NavLink href={route('posts.index')}>Posts</NavLink>
+                        </div>
                     </div>
                     <div className="self-end flex flex-row-reverse pr-16 pb-1">
                         {user ? (
