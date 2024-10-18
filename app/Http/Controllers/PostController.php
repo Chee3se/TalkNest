@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
     public function index()
     {
-        return "index";
+        $post = Post::all();
+        return Inertia::render('Post/Index', ["posts" => $post]);
     }
-    public function show()
+    public function show($id)
     {
-        return "show";
+        $post = Post::all();
+        return Inertia::render('Post/Show', compact('post'));
     }
     public function create()
     {
