@@ -26,7 +26,7 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Log in"/>
 
             <div className="h-[93vh] w-full flex flex-col sm:justify-center items-center" style={{ backgroundImage: 'url(/orange-background.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white border-gray-300 border-2 shadow-md overflow-hidden sm:rounded-lg">
+                <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-gradient-to-b from-red-200 to-yellow-200  border-yellow-300 border-2 shadow-md overflow-hidden sm:rounded-lg">
 
                     {status && (
                         <div className="mb-4 text-sm font-medium text-green-600">
