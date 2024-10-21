@@ -13,17 +13,15 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::factory()->create([
+        Post::create([
             'title' => 'First Post',
             'content' => 'This is the first post.',
-            'category_id' => 1,
             'user_id' => 1,
         ]);
 
-        Post::factory()->create([
+        Post::create([
             'title' => 'Second Post',
             'content' => 'This is the second post.',
-            'category_id' => 2,
             'user_id' => 1,
         ]);
     }
