@@ -10,7 +10,11 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('userRate')->get()->map(function($post) {
+            $post->user_rate = $post->userRate ? (bool) $post->userRate->type : null;
+            return $post->makeHidden('userRate');
+        });
+
         return Inertia::render('Post/Index', ["posts" => $posts]);
     }
 

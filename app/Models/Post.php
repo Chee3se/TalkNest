@@ -15,4 +15,9 @@ class Post extends Model
         'category_id',
         'user_id',
     ];
+
+    public function userRate()
+    {
+        return $this->hasOne(Rate::class)->where('user_id', auth()->id());
+    }
 }
