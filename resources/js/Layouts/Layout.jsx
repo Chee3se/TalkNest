@@ -33,25 +33,26 @@ export default function Layout({ header, children }) {
                     <div className="self-end flex flex-row-reverse pr-16 pb-1">
                         {user ? (
                             <div
-                                className="h-11 animated-background bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 p-0.5 flex justify-center rounded-full">
-                                <Link href={route('logout')} method="post"
-                                      className="bg-gray-200 py-2 px-8 rounded-l-full border-gray-300 hover:bg-gray-300 duration-300 border-r-2 text-gray-900">
-                                    Logout
-                                </Link>
+                                className="h-11 animated-background bg-gradient-to-r from-red-500 to-yellow-500 p-0.5 flex justify-center rounded-full">
+                                
                                 <Link href={route('profile.show')}
-                                      className="bg-gray-200 py-2 px-8 rounded-r-full text-gray-900 hover:bg-gray-300 duration-300">
+                                      className="bg-gradient-to-r from-red-200 to-yellow-200 py-2 px-8 rounded-l-full border-yellow-200 hover:bg-yellow-300 duration-300 border-r-2 text-gray-900   ">
                                     Profile
+                                </Link>
+                                <Link href={route('logout')} method="post"
+                                      className="bg-gradient-to-r from-yellow-200 to-red-200 py-2 px-8 rounded-r-full text-gray-900 hover:bg-yellow-300 duration-300">
+                                    Logout
                                 </Link>
                             </div>
                         ) : (
                             <div
-                                className="h-11 animated-background bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 p-0.5 flex justify-center rounded-full">
+                                className="h-11 animated-background bg-gradient-to-r from-red-500 to-yellow-500 p-0.5 flex justify-center rounded-full">
                                 <Link href={route('login')}
-                                      className="bg-gradient-to-r from-red-200 to-yellow-200 py-2 px-8 rounded-l-full border-yellow-200 hover:bg-black duration-300 border-r-2 text-gray-900">
+                                      className="bg-gradient-to-r from-red-200 to-yellow-200 py-2 px-8 rounded-l-full border-yellow-200 hover:bg-yellow-300 duration-300 border-r-2 text-gray-900">
                                     Login
                                 </Link>
                                 <Link href={route('register')}
-                                      className="bg-gradient-to-r from-yellow-200 to-red-200 py-2 px-8 rounded-r-full text-gray-900 hover:bg-black duration-300">
+                                      className="bg-gradient-to-r from-yellow-200 to-red-200 py-2 px-8 rounded-r-full text-gray-900 hover:bg-yellow-300 duration-300">
                                     Register
                                 </Link>
                             </div>
