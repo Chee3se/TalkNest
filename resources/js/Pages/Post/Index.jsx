@@ -6,7 +6,10 @@ export default function Index({ auth, posts }) {
         <Layout header={"Posts"}>
             <ul>
                 {posts.map((post) => (
-                    <li key={post}>{post}</li>
+                    <li key={post.id}>
+                        {post.title}{" "}
+                        <button href={route("posts.show/")}>X</button>
+                    </li>
                 ))}
             </ul>
         </Layout>
