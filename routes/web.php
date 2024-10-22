@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RateController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\IsPostOwner;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -22,6 +24,10 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::post('/posts/{post}/rate', [RateController::class, 'rate'])->middleware('auth');
+});
+
+Route::middleware('auth', IsPostOwner::class)->group(function () {
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::patch('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');

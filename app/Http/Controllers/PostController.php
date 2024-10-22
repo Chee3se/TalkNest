@@ -10,32 +10,57 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post = Post::all();
-        return Inertia::render('Post/Index', ["posts" => $post]);
+        $posts = Post::all();
+        return Inertia::render('Post/Index', ["posts" => $posts]);
     }
+
     public function show($id)
     {
-        $post = Post::all();
+        $post = Post::findOrFail($id);
         return Inertia::render('Post/Show', compact('post'));
     }
+
     public function create()
     {
-        return "create";
+        return Inertia::render('Post/Create');
     }
-    public function store()
+
+    public function store(Request $request)
     {
-        return "store";
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        Post::create($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
-    public function edit()
+
+    public function edit($id)
     {
-        return "edit";
+        $post = Post::findOrFail($id);
+        return Inertia::render('Post/Edit', compact('post'));
     }
-    public function update()
+
+    public function update(Request $request, $id)
     {
-        return "update";
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->update($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
-    public function destroy()
+
+    public function destroy($id)
     {
-        return "destroy";
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
     }
 }
