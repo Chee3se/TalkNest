@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
+use App\Models\Rate;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\PostSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,15 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        $this->call([PostSeeder::class]);
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('root'),
+            'role' => 'admin',
+        ]);
+
+        User::factory(20)->create();
+        Post::factory(10)->create();
+        Rate::factory(200)->create();
     }
 }
