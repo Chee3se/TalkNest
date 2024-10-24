@@ -2,12 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Post;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsPostOwner
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,14 +15,7 @@ class IsPostOwner
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $path = $request->getPathInfo();
-        // Get the id for the post from the path which is /posts/{id}/edit
-        $post = Post::findOrFail((int) explode('/', $path)[2]);
-        // Check if post exists
-        if (!$post) {
-            abort(404);
-        }
-        if ($post->user_id !== auth()->id()) {
+        if (!auth()->user()->role === 'admin') {
             abort(403);
         }
         return $next($request);

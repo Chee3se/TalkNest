@@ -9,6 +9,7 @@ export default function Rating({ auth, postId, initialRating, initialVote }) {
     const handleRate = async (type) => {
         if (!auth.user) {
             setMessage('You need to be logged in to rate.');
+            // Send the user to login route
 
             return;
         }
