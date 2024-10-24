@@ -11,7 +11,7 @@ export default function Index({ auth, posts }) {
                 <div className="flex flex-col items-center gap-6">
                     {posts.map((post) => (
                         <div key={post.id} className="bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-                            <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
+                            <h2 className="text-2xl font-bold mb-2 pb-2 border-b-2 border-gray-300">{post.title}</h2>
                             <div
                                 className="text-gray-700"
                                 dangerouslySetInnerHTML={{ __html: marked(post.content) }}
