@@ -17,9 +17,11 @@ export default function Show({ auth, post }) {
                         dangerouslySetInnerHTML={{ __html: sanitizedContent }}
                     ></div>
                     <div className="flex justify-between items-center mt-4">
-                        <Link href={`/posts/${post.id}/edit`} className="text-indigo-500 hover:text-indigo-700">
-                            Edit
-                        </Link>
+                        {auth.user && auth.user.id === post.user_id && (
+                            <Link href={`/posts/${post.id}/edit`} className="text-gray-100 no-underline bg-blue-500 hover:bg-blue-600 duration-200 px-4 py-1.5 rounded-xl">
+                                Edit
+                            </Link>
+                        )}
                         <Link href="/posts" className="text-indigo-500 hover:text-indigo-700">
                             Back to Posts
                         </Link>

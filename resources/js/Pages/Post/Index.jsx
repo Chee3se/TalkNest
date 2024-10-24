@@ -2,6 +2,7 @@ import { Head, Link } from "@inertiajs/react";
 import Layout from "@/Layouts/Layout.jsx";
 import Rating from "@/Components/Rating.jsx";
 import { marked } from "marked";
+import dayjs from "dayjs";
 
 export default function Index({ auth, posts }) {
     return (
@@ -10,8 +11,13 @@ export default function Index({ auth, posts }) {
             <div className="container mx-auto py-8">
                 <div className="flex flex-col items-center gap-6">
                     {posts.map((post) => (
-                        <div key={post.id} className="bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-                            <h2 className="text-2xl font-bold mb-2 pb-2 border-b-2 border-gray-300">{post.title}</h2>
+                        <div key={post.id} className="relative bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
+                            <h2 className="text-3xl font-bold mb-4 pb-4 border-b-2 border-gray-300">
+                                {post.title}
+                                {dayjs().diff(dayjs(post.created_at), 'hour') < 1 && (
+                                    <span className="ml-2 text-sm text-gray-50 bg-gradient-to-r from-blue-300 to-blue-500 py-2 px-4 rounded-xl right-6 top-6 absolute">New!</span>
+                                )}
+                            </h2>
                             <div
                                 className="text-gray-700"
                                 dangerouslySetInnerHTML={{ __html: marked(post.content) }}
@@ -24,6 +30,9 @@ export default function Index({ auth, posts }) {
                             </div>
                         </div>
                     ))}
+                    <Link href={route('posts.create')} className="fixed right-0 bottom-0 mb-10 mr-10 text-gray-100 no-underline bg-blue-500 hover:bg-blue-600 duration-200 px-4 py-1.5 rounded-xl">
+                        Create Post
+                    </Link>
                 </div>
             </div>
         </Layout>

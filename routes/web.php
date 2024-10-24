@@ -18,14 +18,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
-
 Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::post('/posts/{post}/rate', [RateController::class, 'rate'])->middleware('auth');
 });
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 
 Route::middleware(['auth', IsPostOwner::class])->group(function () {
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
