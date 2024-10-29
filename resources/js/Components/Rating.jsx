@@ -28,7 +28,7 @@ export default function Rating({ auth, postId, initialRating, initialVote }) {
     };
 
     return (
-        <div className="flex items-center flex-col gap-0.5">
+        <div className="flex items-center flex-col gap-0.5 bg-gradient-to-b from-yellow-200 to-red-200 rounded-3xl p-1 border border-red-300">
             <button onClick={() => handleRate(true)} className="text-orange-500 hover:text-orange-700">
                 {userVote === true ?
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ff8000" stroke="#FFA500">

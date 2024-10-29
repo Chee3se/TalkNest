@@ -14,10 +14,10 @@ export default function Show({ auth, post }) {
                         dangerouslySetInnerHTML={{ __html: marked(post.content) }}
                     ></div>
                     <div className="flex justify-between items-center mt-4">
-                        <Link href={`/posts/${post.id}/edit`} className="text-indigo-500 hover:text-indigo-700">
+                        <Link href={`/posts/${post.id}/edit`} className="px-4 py-2 bg-gradient-to-r from-yellow-400 to-red-400 text-white font-semibold rounded-2xl hover:text-red-500 transition duration-200">
                             Edit
                         </Link>
-                        <Link href="/posts" className="text-indigo-500 hover:text-indigo-700">
+                        <Link href="/posts" className="text-orange-500 hover:text-red-700 hover:underline">
                             Back to Posts
                         </Link>
                     </div>
