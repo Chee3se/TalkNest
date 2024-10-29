@@ -25,8 +25,8 @@ export default function Register() {
         <Layout>
             <Head title="Register"/>
 
-            <div className="flex flex-col sm:justify-center items-center pt-48">
-                <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white border-gray-300 border-2 shadow-md overflow-hidden sm:rounded-lg">
+            <div className="h-[93vh] w-full flex flex-col sm:justify-center items-center" style={{ backgroundImage: 'url(/orange-background.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-gradient-to-b from-red-200 to-yellow-200 border-orange-300 border-2 shadow-md overflow-hidden sm:rounded-lg">
 
                     <form onSubmit={submit}>
                         <div>
@@ -108,12 +108,13 @@ export default function Register() {
                         <div className="mt-4 flex items-center justify-end">
                             <Link
                                 href={route('login')}
-                                className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="rounded-md text-sm text-red-400 underline hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Already registered?
                             </Link>
 
-                            <PrimaryButton className="ms-4" disabled={processing}>
+                            <PrimaryButton className="bg-red-500 hover:bg-orange-500 text-yellow-200 font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50"
+                             disabled={processing}>
                                 Register
                             </PrimaryButton>
                         </div>
