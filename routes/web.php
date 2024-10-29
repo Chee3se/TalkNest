@@ -36,11 +36,12 @@ Route::middleware(['auth', IsPostOwner::class])->group(function () {
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
-Route::middleware('auth', IsAdmin::class)->group(function () {
+Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
     Route::delete('/reports/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
     Route::patch('/reports/{id}', [ReportController::class, 'update'])->name('reports.update');
+    Route::post('/reports/{report}/resolve', [ReportController::class, 'resolve'])->name('reports.resolve');
 });
 
 require __DIR__.'/auth.php';

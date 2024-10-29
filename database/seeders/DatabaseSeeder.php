@@ -23,6 +23,17 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('root'),
+            'role' => 'admin',
+        ]);
+
+        User::factory(20)->create();
+        Post::factory(10)->create();
+        Rate::factory(200)->create();
+
         Post::factory()->create([
             'title' => 'My name is Jeff',
             'content' => '## Yes it is, and here\'s why
@@ -34,16 +45,5 @@ class DatabaseSeeder extends Seeder
 > Thanks for reading, Habibi!',
             'user_id' => 1
         ]);
-
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('root'),
-            'role' => 'admin',
-        ]);
-
-        User::factory(20)->create();
-        Post::factory(10)->create();
-        Rate::factory(200)->create();
     }
 }

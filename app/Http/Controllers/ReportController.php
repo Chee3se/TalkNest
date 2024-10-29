@@ -10,8 +10,12 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $reports = Report::all();
-        return Inertia::render('Report/Index', ['reports' => $reports]);
+        $reports = Report::with('post')
+            ->orderBy('status', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return Inertia::render('Reports/Index', ['reports' => $reports]);
     }
 
     public function store()
@@ -23,10 +27,25 @@ class ReportController extends Controller
             'comment_id' => 'nullable',
         ]);
 
+        if (is_null($data['post_id']) && is_null($data['comment_id'])) {
+            return redirect()->back()->withErrors(['post_id' => 'Either post_id or comment_id must be provided.']);
+        }
+
         $data['user_id'] = auth()->id();
         $data['status'] = 0;
 
         Report::create($data);
+
+        return redirect()->back();
+    }
+
+    public function resolve(Request $request, Report $report)
+    {
+        $report->update(['status' => 1]);
+
+        if ($request->delete_post) {
+            $report->post->delete();
+        }
 
         return redirect()->back();
     }
