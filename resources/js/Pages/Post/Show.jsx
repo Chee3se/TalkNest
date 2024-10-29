@@ -18,9 +18,14 @@ export default function Show({ auth, post }) {
                     ></div>
                     <div className="flex justify-between items-center mt-4">
                         {auth.user && auth.user.id === post.user_id && (
-                            <Link href={`/posts/${post.id}/edit`} className="text-gray-100 no-underline bg-blue-500 hover:bg-blue-600 duration-200 px-4 py-1.5 rounded-xl">
-                                Edit
-                            </Link>
+                            <div className="flex gap-4">
+                                <Link href={route('posts.edit', {id: post.id})} className="text-gray-100 no-underline bg-blue-500 hover:bg-blue-600 duration-200 px-4 py-1.5 rounded-xl">
+                                    Edit
+                                </Link>
+                                <Link href={route('posts.destroy', {id: post.id})} method="delete" as="button" className="text-gray-100 no-underline bg-red-500 hover:bg-red-600 duration-200 px-4 py-1.5 rounded-xl">
+                                    Delete
+                                </Link>
+                            </div>
                         )}
                         <Link href="/posts" className="text-indigo-500 hover:text-indigo-700">
                             Back to Posts

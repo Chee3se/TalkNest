@@ -21,6 +21,20 @@ class PostController extends Controller
         return Inertia::render('Post/Index', ["posts" => $posts]);
     }
 
+    public function myPosts(Request $request)
+    {
+        $user = $request->user();
+        $posts = Post::where('user_id', $user->id)
+            ->with('userRate')
+            ->orderBy('created_at', 'desc')
+            ->get()->map(function($post) {
+                $post->user_rate = $post->userRate ? (bool) $post->userRate->type : null;
+                return $post->makeHidden('userRate');
+            });
+
+        return Inertia::render('Post/MyPosts', ["posts" => $posts]);
+    }
+
     public function show($id)
     {
         $post = Post::findOrFail($id);

@@ -28,6 +28,7 @@ export default function Layout({ header, children }) {
                         {/* <!-- Main Links --> */}
                         <div className="hidden md:flex gap-10 pl-10">
                             <NavLink style={{ fontFamily: "'Exo 2', sans-serif" }} href={route('posts.index')}>Posts</NavLink>
+                            <NavLink style={{ fontFamily: "'Exo 2', sans-serif" }} href={route('posts.myPosts')}>My Posts</NavLink>
                         </div>
                     </div>
                     <div className="self-end flex flex-row-reverse pr-16 pb-1">
