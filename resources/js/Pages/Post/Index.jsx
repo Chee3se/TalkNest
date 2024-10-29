@@ -25,7 +25,7 @@ export default function Index({ auth, posts }) {
                                      dangerouslySetInnerHTML={{__html: marked(post.content)}}></div>
                             </div>
                             <div className="flex justify-between items-center mt-4">
-                                <Link href={`/posts/${post.id}`} className="text-indigo-500 hover:text-indigo-700">
+                                <Link href={`/posts/${post.id}`} className="text-orange-500 hover:text-red-700 hover:underline">
                                     Read more
                                 </Link>
                                 <Rating auth={auth} postId={post.id} initialRating={post.rating} initialVote={post.user_rate}/>

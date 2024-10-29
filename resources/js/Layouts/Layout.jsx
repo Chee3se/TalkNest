@@ -16,7 +16,7 @@ export default function Layout({ header, children }) {
             <Head title={header}/>
             <div className="min-h-screen bg-gray-100">
                 {/* <!-- Navigation Bar --> */}
-                <nav className="bg-white border-b-2 border-gray-200 py-1.5 flex gap-10 pl-16 font-bold">
+                <nav className="bg-white border-b-2 border-gray-200 py-1.5 flex gap-10 pl-16 font-bold bg-stone-200">
                     <div className="self-start flex flex-row bg-white px-4 rounded-full">
                         <img src="/favicon.ico" alt="Logo" className="h-10 my-auto"/>
                         <Link href={"/"}
@@ -47,7 +47,7 @@ export default function Layout({ header, children }) {
                             </div>
                         ) : (
                             <div
-                                className="h-11 animated-background bg-gradient-to-r from-red-500 to-yellow-500 p-0.5 flex justify-center rounded-full">
+                                className="h-11 animated-background bg-gradient-to-r from-red-200 to-yellow-200 p-0.5 flex justify-center rounded-full">
                                 <Link style={{ fontFamily: "'Exo 2', sans-serif" }} href={route('login')}
                                       className="no-underline bg-gradient-to-r from-red-200 to-yellow-200 py-2 px-8 rounded-l-full border-yellow-200 hover:bg-yellow-300 duration-300 border-r-2 text-gray-900">
                                     Login

@@ -87,13 +87,13 @@ export default function Login({ status, canResetPassword }) {
                             {canResetPassword && (
                                 <Link
                                     href={route('password.request')}
-                                    className="rounded-md text-sm text-red-400 underline hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    className="rounded-md text-sm text-red-400 underline hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 px-3"
                                 >
                                     Forgot your password?
                                 </Link>
                             )}
 
-                            <PrimaryButton className="bg-red-500 hover:bg-orange-500 text-yellow-200 font-bold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50" disabled={processing}>
+                            <PrimaryButton className="bg-red-500 hover:bg-orange-500 text-yellow-200 font-bold py-2 px-4 rounded-2xl shadow-lg transform transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50" disabled={processing}>
                                 Log in
                             </PrimaryButton>
                         </div>
