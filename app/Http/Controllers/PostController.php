@@ -13,10 +13,10 @@ class PostController extends Controller
     {
         $posts = Post::with('userRate')
             ->orderBy('created_at', 'desc')
-            ->get()->map(function($post) {
-            $post->user_rate = $post->userRate ? (bool) $post->userRate->type : null;
-            return $post->makeHidden('userRate');
-        });
+            ->get()->map(function ($post) {
+                $post->user_rate = $post->userRate ? (bool) $post->userRate->type : null;
+                return $post->makeHidden('userRate');
+            });
 
         return Inertia::render('Post/Index', ["posts" => $posts]);
     }
@@ -27,7 +27,7 @@ class PostController extends Controller
         $posts = Post::where('user_id', $user->id)
             ->with('userRate')
             ->orderBy('created_at', 'desc')
-            ->get()->map(function($post) {
+            ->get()->map(function ($post) {
                 $post->user_rate = $post->userRate ? (bool) $post->userRate->type : null;
                 return $post->makeHidden('userRate');
             });
@@ -35,11 +35,13 @@ class PostController extends Controller
         return Inertia::render('Post/MyPosts', ["posts" => $posts]);
     }
 
+
     public function show($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with(['comments.user'])->findOrFail($id);
         return Inertia::render('Post/Show', compact('post'));
     }
+
 
     public function create(): Response
     {

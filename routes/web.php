@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CommentController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.show');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware('auth')->group(function () {
@@ -25,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/my-posts', [PostController::class, 'myPosts'])->name('posts.myPosts');
     Route::post('/posts/{post}/rate', [RateController::class, 'rate'])->middleware('auth');
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
@@ -44,4 +47,4 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::post('/reports/{report}/resolve', [ReportController::class, 'resolve'])->name('reports.resolve');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
