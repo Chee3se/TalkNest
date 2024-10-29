@@ -11,8 +11,32 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
+
 class ProfileController extends Controller
 {
+    public function show(): Response
+    {
+        $user = Auth::user();
+
+        // Calculate the total votes and retrieve posts
+        $totalVotes = $user->posts()->sum('rating');
+        $totalPosts = $user->posts()->count();
+        $totalComments = $user->comments()->count();
+        $posts = $user->posts()->latest()->get(['id', 'title', 'created_at', 'rating']); // Get posts with basic details
+        $comments = $user->comments()->latest()->get(['id', 'content', 'user_id', 'post_id']);
+
+        return Inertia::render('Profile/Index', [
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email,
+                'totalVotes' => $totalVotes,
+                'totalPosts' => $totalPosts,
+                'totalComments' => $totalComments,
+            ],
+            'posts' => $posts,
+            'comments' => $comments,
+        ]);
+    }
     /**
      * Display the user's profile form.
      */

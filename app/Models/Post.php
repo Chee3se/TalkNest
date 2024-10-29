@@ -15,6 +15,12 @@ class Post extends Model
         'category_id',
         'user_id',
     ];
+    // In App\Models\Post.php
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
     public function userRate()
     {
