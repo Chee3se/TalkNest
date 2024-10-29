@@ -27,12 +27,14 @@ class RateController extends Controller
                 $existingRate->delete();
                 $post->rating += $rateType ? -1 : 1;
                 $message = 'Rating removed successfully.';
+                $ratingChange = $rateType ? -1 : 1;
             } else {
                 $existingRate->update([
                     'type' => $rateType,
                 ]);
                 $post->rating += $rateType ? 2 : -2;
                 $message = 'Rating updated successfully.';
+                $ratingChange = $rateType ? 2 : -2;
             }
         } else {
             Rate::create([
@@ -42,10 +44,14 @@ class RateController extends Controller
             ]);
             $post->rating += $rateType ? 1 : -1;
             $message = 'Rating submitted successfully.';
+            $ratingChange = $rateType ? 1 : -1;
         }
 
         $post->save();
 
-        return response()->json(['message' => $message]);
+        return response()->json([
+            'message' => $message,
+            'ratingChange' => $ratingChange,
+            ]);
     }
 }

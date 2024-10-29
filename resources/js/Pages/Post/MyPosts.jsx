@@ -4,10 +4,10 @@ import Rating from "@/Components/Rating.jsx";
 import { marked } from "marked";
 import dayjs from "dayjs";
 
-export default function Index({ auth, posts }) {
+export default function MyPosts({ auth, posts }) {
     return (
-        <Layout header={"Posts"}>
-            <Head title="Posts" />
+        <Layout header={"My Posts"}>
+            <Head title="My Posts" />
             <div className="container mx-auto py-8">
                 <div className="flex flex-col items-center gap-6">
                     {posts.map((post) => (

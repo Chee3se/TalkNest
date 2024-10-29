@@ -16,7 +16,8 @@ class Post extends Model
         'user_id',
     ];
 
-    public function user() {
-        return $this->
+    public function userRate()
+    {
+        return $this->hasOne(Rate::class)->where('user_id', auth()->id());
     }
 }
