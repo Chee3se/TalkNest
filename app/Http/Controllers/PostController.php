@@ -67,4 +67,13 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
     }
+    public function sort(Request $request)
+    {
+        $sortField = $request->input('sort', 'created_at'); 
+        $sortDirection = $request->input('direction', 'asc'); 
+    
+        $posts = Post::orderBy($sortField, $sortDirection)->get();
+    
+        return view('posts.index', compact('posts'));
+}
 }
