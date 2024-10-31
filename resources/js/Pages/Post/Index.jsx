@@ -7,11 +7,11 @@ import { useState, useEffect } from "react";
 
 export default function Index({ auth, posts = [] }) {
     const [searchTerm, setSearchTerm] = useState("");
-    const [sortType, setSortType] = useState("newest"); // State for sorting
-    const [filteredAndSortedPosts, setFilteredAndSortedPosts] = useState(posts); // State for filtered and sorted posts
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown visibility
+    const [sortType, setSortType] = useState("newest"); 
+    const [filteredAndSortedPosts, setFilteredAndSortedPosts] = useState(posts); 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
 
-    // Function to sort posts based on selected sort type
+    
     const sortPosts = (posts) => {
         switch (sortType) {
             case "newest":
@@ -27,7 +27,7 @@ export default function Index({ auth, posts = [] }) {
         }
     };
 
-    // Function to filter and sort posts based on search term and selected sort type
+    
     const handleFilter = () => {
         const filteredPosts = posts.filter(post => 
             post.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -35,27 +35,27 @@ export default function Index({ auth, posts = [] }) {
         setFilteredAndSortedPosts(sortPosts(filteredPosts));
     };
 
-    // Handle search input change
+  
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
-    // Use effect to filter and sort posts when search term or sort type changes
+   
     useEffect(() => {
         handleFilter();
-    }, [searchTerm, sortType]); // Re-run when searchTerm or sortType changes
+    }, [searchTerm, sortType]); 
 
-    // Handle sort type selection from dropdown
+   
     const handleSortSelection = (type) => {
         setSortType(type);
-        setIsDropdownOpen(false); // Close the dropdown after selecting an option
+        setIsDropdownOpen(false); 
     };
 
     return (
         <Layout header={"Posts"}>
             <Head title="Posts" />
             <div className="container mx-auto py-8">
-                {/* Search bar and dropdown menu */}
+                {}
                 <div className="mb-6 w-full max-w-2xl mx-auto flex items-center space-x-2">
                     <input
                         type="text"
@@ -64,7 +64,7 @@ export default function Index({ auth, posts = [] }) {
                         onChange={handleSearchChange}
                         className="text-xl mb-4 pb-2 border-2 border-gray-300 rounded-lg p-2 flex-grow"
                     />
-                    {/* Dropdown button */}
+                    {}
                     <div className="relative">
                         <button 
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
@@ -72,7 +72,7 @@ export default function Index({ auth, posts = [] }) {
                         >
                             Sort By
                         </button>
-                        {/* Dropdown menu */}
+                        {}
                         {isDropdownOpen && (
                             <div className="absolute right-0 mt-1 bg-white border rounded shadow-lg z-10">
                                 <button 
